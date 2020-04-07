@@ -103,13 +103,15 @@ public class AFD{
 		//Generate AFD
 		AFD afd = new AFD(afd_path);
 
+		BufferedReader sbr = null;
+		String currentString = null;
+
 		if(type.equals("-f")){
 			//Param
 			String strings_path = args[2];
 
 			File Stringsfile = null;
 			FileReader sfr = null;
-			BufferedReader sbr = null;
 			//Read File
 			try {
 
@@ -117,7 +119,6 @@ public class AFD{
 				sfr = new FileReader (Stringsfile);
 				sbr = new BufferedReader(sfr);
 
-				String currentString = null;
 				while((currentString=sbr.readLine())!=null){
 					String message = afd.accept(currentString) ? "Cuerda aceptada" : "Cuerda no aceptada";
 					System.out.println(message);
@@ -131,7 +132,17 @@ public class AFD{
 				}  
 			}
 		}else if(type.equals("-i")){
-
+			InputStreamReader reader = new InputStreamReader(System.in);
+			sbr = new BufferedReader(reader);
+			while(true){
+				System.out.println("Ingrese una cuerda: ");
+				currentString = sbr.readLine();
+				if(currentString != null || !currentString.equals("")){
+					afd.accept(currentString);
+				}else{
+					System.exit(0);
+				}
+			}
 		}else{
 			System.exit(0);
 		}
