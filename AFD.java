@@ -100,7 +100,43 @@ public class AFD{
 	public static void main(String[] args) throws Exception{
 		//Paramns
 		String afd_path = args[0];
+		String type = args[1];
+
+		//Generate AFD
 		AFD afd = new AFD(afd_path);
+
+		if(type.equals("-f")){
+			//Param
+			String strings_path = args[2];
+
+			File Stringsfile = null;
+			FileReader sfr = null;
+			BufferedReader sbr = null;
+			//Read File
+			try {
+
+				Stringsfile = new File (strings_path);
+				sfr = new FileReader (Stringsfile);
+				sbr = new BufferedReader(sfr);
+
+				String currentString = null;
+				while((currentString=sbr.readLine())!=null){
+					String message = afd.accept(currentString) ? "Cuerda aceptada" : "Cuerda no aceptada";
+					System.out.println(message);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				if( null != sfr ){   
+					sfr.close();     
+				}  
+			}
+		}else if(type.equals("-i")){
+
+		}else{
+			System.exit(0);
+		}
 
 
 
