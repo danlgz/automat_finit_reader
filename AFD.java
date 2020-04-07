@@ -5,6 +5,10 @@
 	agregar los campos y metodos que desee.
 */
 public class AFD{
+	AFDState states[];
+	Character alphabet[];
+	Character statesFromFile[];
+	int totalStates;
 	
 	/*
 		Implemente el constructor de la clase AFD
@@ -23,8 +27,9 @@ public class AFD{
 		caracter que representa el simbolo a consumir, y devuelve 
 		un entero que representa el siguiente estado
 	*/
-	public int getTransition(int currentState, char symbol){
-		return 0;
+	public int getTransition(int currentState, char symbol) {
+		if (currentState > this.states.length) return 0;
+		return this.states[currentState].getNextState(symbol);
 	}
 
 	/*
@@ -49,5 +54,23 @@ public class AFD{
 	*/
 	public static void main(String[] args) throws Exception{
 		
+	}
+
+	/* HELPERS */
+	private void generateStates(int numberOfStates) {
+		this.states = new AFDState[numberOfStates];
+
+		for (int i = 0; i < numberOfStates; i++) {
+			this.states[i] = new AFDState(i);
+		}
+	}
+
+	private AFDState getState(int state) {
+		return this.states[state];
+	}
+
+	private void setNextState(int state, char symbol, int goToState) {
+		AFDState localState = this.getState(state);
+		localState.setStage(symbol, goToState);
 	}
 }
