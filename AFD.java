@@ -9,7 +9,7 @@ import java.io.*;
 public class AFD{
 	AFDState states[];
 	Character alphabet[];
-	Character statesFromFile[][];
+	int statesFromFile[][];
 	int totalStates;
 	int finalState;
 	
@@ -113,5 +113,18 @@ public class AFD{
 	private void setNextState(int state, char symbol, int goToState) {
 		AFDState localState = this.getState(state);
 		localState.setStage(symbol, goToState);
+	}
+
+	private void setAllStates() {
+		for (int i = 0; i < this.alphabet.length; i ++) {
+			// i fom alphabet is equal to j from statesFromFile
+			char symbol = this.alphabet[i];
+			for (int j = 0; j < this.statesFromFile.length; j ++) {
+				for (int k = 0; k < this.statesFromFile[j].length; k++) {
+					int goTo = this.statesFromFile[j][k];
+					this.setNextState(k, symbol, goTo);
+				}
+			}
+		}
 	}
 }
