@@ -110,10 +110,10 @@ public class AFD{
 	}
 
 	/* HELPERS */
-	private void generateStates(int numberOfStates) {
-		this.states = new AFDState[numberOfStates];
+	private void generateStates() {
+		this.states = new AFDState[this.totalStates];
 
-		for (int i = 0; i < numberOfStates; i++) {
+		for (int i = 0; i < this.totalStates; i++) {
 			this.states[i] = new AFDState(i);
 		}
 	}
@@ -147,6 +147,17 @@ public class AFD{
 		for (int i = 0; i < elements.length; i++) {
 			String letter = elements[i];
 			result[i] = letter.charAt(0);
+		}
+
+		return result;
+	}
+
+	private int[] stringToIntList(String line) {
+		Character elements[] = this.stringToCharList(line);
+		int result[] = new int[elements.length];
+
+		for (int i = 0; i < elements.length; i++) {
+			result[i] = (int) elements[i];
 		}
 
 		return result;
