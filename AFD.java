@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 
 /*
 	Utilice esta clase para guardar la informacion de su
@@ -23,6 +24,7 @@ public class AFD{
 		File file = null;
 		FileReader fr = null;
 		BufferedReader br = null;
+		statesFromFile = new int[alphabet.length][totalStates];
 		//Read File
 		try {
 
@@ -39,6 +41,8 @@ public class AFD{
 					totalStates = Integer.parseInt(line);
 				}else if(lineNumber == 3){
 					finalState = Integer.parseInt(line);
+				}else{
+					statesFromFile[lineNumber-4] = stringToCharList(line);
 				}
 				lineNumber++;
 			}
