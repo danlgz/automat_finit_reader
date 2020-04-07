@@ -106,10 +106,10 @@ public class AFD{
 	}
 
 	/* HELPERS */
-	private void generateStates(int numberOfStates) {
-		this.states = new AFDState[numberOfStates];
+	private void generateStates() {
+		this.states = new AFDState[this.totalStates];
 
-		for (int i = 0; i < numberOfStates; i++) {
+		for (int i = 0; i < this.totalStates; i++) {
 			this.states[i] = new AFDState(i);
 		}
 	}
