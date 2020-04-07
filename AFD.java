@@ -23,7 +23,6 @@ public class AFD{
 		File file = null;
 		FileReader fr = null;
 		BufferedReader br = null;
-		statesFromFile = new int[alphabet.length][totalStates];
 		//Read File
 		try {
 
@@ -36,7 +35,10 @@ public class AFD{
 			while((line=br.readLine())!=null){
 				if (lineNumber == 1) this.alphabet = stringToCharList(line);
 				else if (lineNumber == 2 ) this.totalStates = Integer.parseInt(line);
-				else if (lineNumber == 3) this.finalState = Integer.parseInt(line);
+				else if (lineNumber == 3) {
+					this.finalState = Integer.parseInt(line); 
+					statesFromFile = new int[alphabet.length][totalStates];
+				}
 				else this.statesFromFile[lineNumber - 4] = stringToIntList(line);
 
 				lineNumber++;
