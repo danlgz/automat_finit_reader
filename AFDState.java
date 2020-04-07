@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class AFDState {
-    private Hashtable<Character, Integer> nextStateDict;
+    private Hashtable<Character, Integer> nextStateDict = new Hashtable<>();
     private int statePosition;
 
     public AFDState(int statePosition) {
