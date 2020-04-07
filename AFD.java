@@ -20,7 +20,7 @@ public class AFD{
 		la informacion del afd (i.e. "Documentos/archivo.afd").
 		Puede utilizar la estructura de datos que desee
 	*/
-	public AFD(String path){
+	public AFD(String path) throws Exception{
 		File file = null;
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -35,7 +35,7 @@ public class AFD{
 			int lineNumber = 1;
 			while((line=br.readLine())!=null){
 				if(lineNumber == 1){
-					alphabet = line.split(",");
+					alphabet = stringToCharList(line);
 				}else if(lineNumber == 2 ) {
 					totalStates = Integer.parseInt(line);
 				}else if(lineNumber == 3){
