@@ -76,6 +76,7 @@ public class AFD{
 		por el afd
 	*/
 	public boolean accept(String string){
+		Character elements[] = this.stringToCharList(string);
 		return false;
 	}
 
@@ -126,5 +127,17 @@ public class AFD{
 				}
 			}
 		}
+	}
+
+	private Character[] stringToCharList(String line) {
+		String elements[] = line.split(",");
+		Character result[] = new Character[elements.length];
+
+		for (int i = 0; i < elements.length; i++) {
+			String letter = elements[i];
+			result[i] = letter.charAt(0);
+		}
+
+		return result;
 	}
 }
