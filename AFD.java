@@ -42,7 +42,7 @@ public class AFD{
 				}else if(lineNumber == 3){
 					finalState = Integer.parseInt(line);
 				}else{
-					statesFromFile[lineNumber-4] = stringToCharList(line);
+					statesFromFile[lineNumber-4] = stringToIntList(line); 
 				}
 				lineNumber++;
 			}
@@ -54,10 +54,6 @@ public class AFD{
 				fr.close();     
 			}  
 		}
-
-		System.out.println(alphabet.length);
-		System.out.println(totalStates);
-		System.out.println(finalState);
 
 	}
 
@@ -104,8 +100,9 @@ public class AFD{
 	public static void main(String[] args) throws Exception{
 		//Paramns
 		String afd_path = args[0];
-		
 		AFD afd = new AFD(afd_path);
+
+
 
 	}
 
