@@ -123,7 +123,7 @@ public class AFD{
 
 				while((currentString=sbr.readLine())!=null){
 					String message = afd.accept(currentString) ? "Cuerda aceptada" : "Cuerda no aceptada";
-					System.out.println(message);
+					System.out.println(currentString + " " + message);
 				}
 				
 			} catch (Exception e) {
