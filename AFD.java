@@ -1,3 +1,5 @@
+import java.io.*;
+
 /*
 	Utilice esta clase para guardar la informacion de su
 	AFD. NO DEBE CAMBIAR LOS NOMBRES DE LA CLASE NI DE LOS 
@@ -10,7 +12,6 @@ public class AFD{
 	int statesFromFile[][];
 	int totalStates;
 	int finalState;
-
 	/*
 		Implemente el constructor de la clase AFD
 		que recibe como argumento un string que 
@@ -18,7 +19,41 @@ public class AFD{
 		la informacion del afd (i.e. "Documentos/archivo.afd").
 		Puede utilizar la estructura de datos que desee
 	*/
-	public AFD(String path){
+	public AFD(String path) throws Exception{
+		File file = null;
+		FileReader fr = null;
+		BufferedReader br = null;
+		//Read File
+		try {
+
+			file = new File (path);
+			fr = new FileReader (file);
+			br = new BufferedReader(fr);
+
+			String line = null;
+			int lineNumber = 1;
+			while((line=br.readLine())!=null){
+				if(lineNumber == 1){
+					alphabet = stringToCharList(line);
+				}else if(lineNumber == 2 ) {
+					totalStates = Integer.parseInt(line);
+				}else if(lineNumber == 3){
+					finalState = Integer.parseInt(line);
+				}
+				lineNumber++;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if( null != fr ){   
+				fr.close();     
+			}  
+		}
+
+		System.out.println(alphabet.length);
+		System.out.println(totalStates);
+		System.out.println(finalState);
 
 	}
 
@@ -63,7 +98,11 @@ public class AFD{
 		de la forma que desee. 
 	*/
 	public static void main(String[] args) throws Exception{
+		//Paramns
+		String afd_path = args[0];
 		
+		AFD afd = new AFD(afd_path);
+
 	}
 
 	/* HELPERS */
