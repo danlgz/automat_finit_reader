@@ -137,7 +137,7 @@ public class AFD{
 			InputStreamReader reader = new InputStreamReader(System.in);
 			sbr = new BufferedReader(reader);
 			while(true){
-				System.out.println("Ingrese una cuerda: ");
+				System.out.print("Ingrese una cuerda: ");
 				currentString = sbr.readLine();
 				if(currentString != null || !currentString.equals("")){
 					afd.accept(currentString);
@@ -163,6 +163,7 @@ public class AFD{
 	}
 
 	private AFDState getState(int state) {
+		System.out.println("state " + state);
 		return this.states[state];
 	}
 
@@ -175,11 +176,10 @@ public class AFD{
 		for (int i = 0; i < this.alphabet.length; i ++) {
 			// i fom alphabet is equal to j from statesFromFile
 			char symbol = this.alphabet[i];
-			for (int j = 0; j < this.statesFromFile.length; j ++) {
-				for (int k = 0; k < this.statesFromFile[j].length; k++) {
-					int goTo = this.statesFromFile[j][k];
-					this.setNextState(k, symbol, goTo);
-				}
+			for (int k = 0; k < this.statesFromFile[i].length; k++) {
+				int goTo = this.statesFromFile[i][k];
+				System.out.println("goTo" + goTo);
+				this.setNextState(k, symbol, goTo);
 			}
 		}
 	}
@@ -201,7 +201,7 @@ public class AFD{
 		int result[] = new int[elements.length];
 
 		for (int i = 0; i < elements.length; i++) {
-			result[i] = (int) elements[i];
+			result[i] = Character.getNumericValue(elements[i]);
 		}
 
 		return result;
