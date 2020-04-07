@@ -147,4 +147,15 @@ public class AFD{
 
 		return result;
 	}
+
+	private int[] stringToIntList(String line) {
+		Character elements[] = this.stringToCharList(line);
+		int result[] = new int[elements.length];
+
+		for (int i = 0; i < elements.length; i++) {
+			result[i] = (int) elements[i];
+		}
+
+		return result;
+	}
 }
