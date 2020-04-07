@@ -11,6 +11,7 @@ public class AFD{
 	Character alphabet[];
 	Character statesFromFile[][];
 	int totalStates;
+	int finalState;
 	
 	/*
 		Implemente el constructor de la clase AFD
@@ -20,6 +21,40 @@ public class AFD{
 		Puede utilizar la estructura de datos que desee
 	*/
 	public AFD(String path){
+		File file = null;
+		FileReader fr = null;
+		BufferedReader br = null;
+		//Read File
+		try {
+
+			file = new File (path);
+			fr = new FileReader (file);
+			br = new BufferedReader(fr);
+
+			String line = null;
+			int lineNumber = 1;
+			while((line=br.readLine())!=null){
+				if(lineNumber == 1){
+					alphabet = line.split(",");
+				}else if(lineNumber == 2 ) {
+					totalStates = Integer.parseInt(line);
+				}else if(lineNumber == 3){
+					finalState = Integer.parseInt(line);
+				}
+				lineNumber++;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if( null != fr ){   
+				fr.close();     
+			}  
+		}
+
+		System.out.println(alphabet.length);
+		System.out.println(totalStates);
+		System.out.println(finalState);
 
 	}
 
@@ -55,47 +90,10 @@ public class AFD{
 		de la forma que desee. 
 	*/
 	public static void main(String[] args) throws Exception{
-		File file = null;
-		FileReader fr = null;
-		BufferedReader br = null;
-		//AFD Properties
-		String[] alphabet = null;
-		int totalStates = 0;
-		int finalState = 0;
-
 		//Paramns
-		String afd_route = args[0];
-
-		//Read File
-		try {
-			file = new File (afd_route);
-			fr = new FileReader (file);
-			br = new BufferedReader(fr);
-
-			String line = null;
-			int lineNumber = 1;
-			while((line=br.readLine())!=null){
-				if(lineNumber == 1){
-					alphabet = line.split(",");
-				}else if(lineNumber == 2 ) {
-					totalStates = Integer.parseInt(line);
-				}else if(lineNumber == 3){
-					finalState = Integer.parseInt(line);
-				}
-				lineNumber++;
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			if( null != fr ){   
-				fr.close();     
-			}  
-		}
-
-		System.out.println(alphabet.length);
-		System.out.println(totalStates);
-		System.out.println(finalState);
+		String afd_path = args[0];
+		
+		AFD afd = new AFD(afd_path);
 
 	}
 
