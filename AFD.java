@@ -75,7 +75,7 @@ public class AFD{
 		por el afd
 	*/
 	public boolean accept(String string){
-		Character elements[] = this.stringToCharList(string);
+		Character elements[] = this.stringToCharListWithoutComma(string);
 		AFDState currentState = getState(1);
 
 		for (int i = 0; i < elements.length; i++) {
@@ -178,7 +178,6 @@ public class AFD{
 			char symbol = this.alphabet[i];
 			for (int k = 0; k < this.statesFromFile[i].length; k++) {
 				int goTo = this.statesFromFile[i][k];
-				System.out.println("goTo" + goTo);
 				this.setNextState(k, symbol, goTo);
 			}
 		}
@@ -202,6 +201,16 @@ public class AFD{
 
 		for (int i = 0; i < elements.length; i++) {
 			result[i] = Character.getNumericValue(elements[i]);
+		}
+
+		return result;
+	}
+
+	private Character[] stringToCharListWithoutComma(String line) {
+		Character result[] = new Character[line.length()];
+
+		for (int i = 0; i < line.length(); i++) {
+			result[i] = line.charAt(i);
 		}
 
 		return result;
