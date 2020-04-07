@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
 
 /*
 	Utilice esta clase para guardar la informacion de su
@@ -35,18 +34,17 @@ public class AFD{
 			String line = null;
 			int lineNumber = 1;
 			while((line=br.readLine())!=null){
-				if(lineNumber == 1){
-					alphabet = stringToCharList(line);
-				}else if(lineNumber == 2 ) {
-					totalStates = Integer.parseInt(line);
-				}else if(lineNumber == 3){
-					finalState = Integer.parseInt(line);
-				}else{
-					statesFromFile[lineNumber-4] = stringToIntList(line); 
-				}
+				if (lineNumber == 1) this.alphabet = stringToCharList(line);
+				else if (lineNumber == 2 ) this.totalStates = Integer.parseInt(line);
+				else if (lineNumber == 3) this.finalState = Integer.parseInt(line);
+				else this.statesFromFile[lineNumber - 4] = stringToIntList(line);
+
 				lineNumber++;
 			}
 			
+			this.generateStates();
+			this.setAllStates();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
