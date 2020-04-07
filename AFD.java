@@ -9,7 +9,7 @@ import java.io.*;
 public class AFD{
 	AFDState states[];
 	Character alphabet[];
-	Character statesFromFile[];
+	Character statesFromFile[][];
 	int totalStates;
 	
 	/*
