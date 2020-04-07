@@ -12,7 +12,6 @@ public class AFD{
 	int statesFromFile[][];
 	int totalStates;
 	int finalState;
-	
 	/*
 		Implemente el constructor de la clase AFD
 		que recibe como argumento un string que 
@@ -77,7 +76,15 @@ public class AFD{
 	*/
 	public boolean accept(String string){
 		Character elements[] = this.stringToCharList(string);
-		return false;
+		AFDState currentState = getState(1);
+
+		for (int i = 0; i < elements.length; i++) {
+			currentState = getState(
+				getTransition(currentState.getStatePosition(), elements[i])
+			);
+		}
+
+		return currentState.getStatePosition() == this.finalState;
 	}
 
 	/*
