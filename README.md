@@ -1,1 +1,1 @@
-# automat_finit_reader
+# finite automaton reader
