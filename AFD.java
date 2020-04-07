@@ -11,7 +11,7 @@ public class AFD{
 	Character alphabet[];
 	int statesFromFile[][];
 	int totalStates;
-	int finalState;
+	int finalState[];
 	/*
 		Implemente el constructor de la clase AFD
 		que recibe como argumento un string que 
