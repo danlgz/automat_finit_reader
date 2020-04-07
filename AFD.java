@@ -140,7 +140,8 @@ public class AFD{
 				System.out.print("Ingrese una cuerda: ");
 				currentString = sbr.readLine();
 				if(currentString != null || !currentString.equals("")){
-					afd.accept(currentString);
+					String message = afd.accept(currentString) ? "Cuerda aceptada" : "Cuerda no aceptada";
+					System.out.println(message);
 				}else{
 					System.exit(0);
 				}
