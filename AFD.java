@@ -163,7 +163,6 @@ public class AFD{
 	}
 
 	private AFDState getState(int state) {
-		System.out.println("state " + state);
 		return this.states[state];
 	}
 
