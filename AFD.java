@@ -84,7 +84,11 @@ public class AFD{
 			);
 		}
 
-		return currentState.getStatePosition() == this.finalState;
+		for (int i = 0; i < this.finalState.length; i++) {
+			if (finalState[i] == currentState.getStatePosition()) return true;
+		}
+
+		return false;
 	}
 
 	/*
